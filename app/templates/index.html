@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/predict" method="POST">
+        <label for="commodity">Commodity:</label><br>
+        <input type="text" id="commodity" name="commodity" value="Rice (milled, superior)"><br>
+        <label for="year">Year:</label><br>
+        <input type="number" id="year" name="year" value="2030"><br>
+        <label for="month">Month:</label><br>
+        <input type="number" id="month" name="month" value="12"><br>
+        <label for="priceflag">Price Flag:</label><br>
+        <input type="text" id="priceflag" name="priceflag" value="actual"><br>
+        <label for="pricetype">Price Type:</label><br>
+        <input type="text" id="pricetype" name="pricetype" value="Retail"><br>
+        <label for="region">Region:</label><br>
+        <input type="number" id="region" name="region" value="1"><br>
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html>
