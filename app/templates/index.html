@@ -10,91 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/global.css">
     <h1 class="title">The Philippine Commodity Price Predictor 📈</h1>
-    <h2 class="subtitle">A CS 180 Project by Herminio Gregorio, Ali Jafri, and Ayen Manguan</h2>
+    <!-- <h3 class="description">A predictive Linear Regression Model that attempts to accurately forecast commodity prices for future months and years using the <span class="font-bold">Philippine Food Prices Dataset</span></h3> -->
+    <h2 class="subtitle">A CS 180 Project developed by Herminio Gregorio, Ali Jafri, and Ayen Manguan</h2>
 </head>
 <body>
 
     <form action="/predict" method="POST">
-        <h1 class="form-label">Fill out the form below then click the button!</h1>       
+        <h1 class="form-label">Fill out the form below then click the button!</h1>  
         
         <div class="input-group">
-            <label class="label" for="commodity">Commodity:</label>
-            <select class="input-box" id="commodity" name="commodity">
-                <option class= selected disabled>Select Commodity</option>
-                <option value="Anchovies">Anchovies</option>
-                <option value="Bananas (lakatan)">Bananas (lakatan)</option>
-                <option value="Bananas (latundan)">Bananas (latundan)</option>
-                <option value="Bananas (saba)">Bananas (saba)</option>
-                <option value="Beans (green, fresh)">Beans (green, fresh)</option>
-                <option value="Beans (mung)">Beans (mung)</option>
-                <option value="Beans (string)">Beans (string)</option>
-                <option value="Bitter melon">Bitter melon</option>
-                <option value="Bottle gourd">Bottle gourd</option>
-                <option value="Cabbage (chinese)">Cabbage (chinese)</option>
-                <option value="Cabbage">Cabbage</option>
-                <option value="Calamansi">Calamansi</option>
-                <option value="Carrots">Carrots</option>
-                <option value="Chicken">Chicken</option>
-                <option value="Choko">Choko</option>
-                <option value="Coconut">Coconut</option>
-                <option value="Crab">Crab</option>
-                <option value="Eggplants">Eggplants</option>
-                <option value="Eggs (duck)">Eggs (duck)</option>
-                <option value="Eggs">Eggs</option>
-                <option value="Fish (fresh)">Fish (fresh)</option>
-                <option value="Fish (frigate tuna)">Fish (frigate tuna)</option>
-                <option value="Fish (mackerel, fresh)">Fish (mackerel, fresh)</option>
-                <option value="Fish (milkfish)">Fish (milkfish)</option>
-                <option value="Fish (redbelly yellowtail fusilier)">Fish (redbelly yellowtail fusilier)</option>
-                <option value="Fish (roundscad)">Fish (roundscad)</option>
-                <option value="Fish (slipmouth)">Fish (slipmouth)</option>
-                <option value="Fish (threadfin bream)">Fish (threadfin bream)</option>
-                <option value="Fish (tilapia)">Fish (tilapia)</option>
-                <option value="Garlic (large)">Garlic (large)</option>
-                <option value="Garlic (small)">Garlic (small)</option>
-                <option value="Garlic">Garlic</option>
-                <option value="Ginger">Ginger</option>
-                <option value="Groundnuts (shelled)">Groundnuts (shelled)</option>
-                <option value="Groundnuts (unshelled)">Groundnuts (unshelled)</option>
-                <option value="Maize (white)">Maize (white)</option>
-                <option value="Maize (yellow)">Maize (yellow)</option>
-                <option value="Maize flour (white)">Maize flour (white)</option>
-                <option value="Maize flour (yellow)">Maize flour (yellow)</option>
-                <option value="Mandarins">Mandarins</option>
-                <option value="Mangoes (carabao)">Mangoes (carabao)</option>
-                <option value="Mangoes (piko)">Mangoes (piko)</option>
-                <option value="Meat (beef)">Meat (beef)</option>
-                <option value="Meat (beef, chops with bones)">Meat (beef, chops with bones)</option>
-                <option value="Meat (chicken, whole)">Meat (chicken, whole)</option>
-                <option value="Meat (pork)">Meat (pork)</option>
-                <option value="Meat (pork, hock)">Meat (pork, hock)</option>
-                <option value="Meat (pork, with bones)">Meat (pork, with bones)</option>
-                <option value="Meat (pork, with fat)">Meat (pork, with fat)</option>
-                <option value="Oil (cooking)">Oil (cooking)</option>
-                <option value="Onions (red)">Onions (red)</option>
-                <option value="Onions (white)">Onions (white)</option>
-                <option value="Papaya">Papaya</option>
-                <option value="Pineapples">Pineapples</option>
-                <option value="Potatoes (Irish)">Potatoes (Irish)</option>
-                <option value="Rice (milled, superior)">Rice (milled, superior)</option>
-                <option value="Rice (paddy)">Rice (paddy)</option>
-                <option value="Rice (premium)">Rice (premium)</option>
-                <option value="Rice (regular, milled)"> Rice (regular, milled)</option>
-                <option value="Rice (special)">Rice (special)</option>
-                <option value="Rice (well milled)">Rice (well milled)</option>
-                <option value="Semolina (white)">Semolina (white)</option>
-                <option value="Semolina (yellow)">Semolina (yellow)</option>
-                <option value="Shrimp (endeavor)">Shrimp (endeavor)</option>
-                <option value="Shrimp (tiger)">Shrimp (tiger)</option>
-                <option value="Squashes">Squashes</option>
-                <option value="Sugar (brown)">Sugar (brown)</option>
-                <option value="Sugar (white)">Sugar (white)</option>
-                <option value="Sweet Potato leaves">Sweet Potato leaves</option>
-                <option value="Sweet potatoes">Sweet potatoes</option>
-                <option value="Taro">Taro</option>
-                <option value="Tomatoes">Tomatoes</option>
-                <option value="Water spinach">Water spinach</option>
-            </select>
+            <label class=label for="category">Category:</label>
+            <select class="input-box" id="category" name="category" onchange="updateCommodity()">
+                {% for category in categories.keys() %}
+                    <option value="{{ category }}">{{ category }}</option>
+                {% endfor %}
+            </select><br>
+        </div>
+    
+        <div class="input-group">
+            <label class=label for="commodity">Commodity:</label>
+            <select class="input-box" id="commodity" name="commodity"></select><br>       
         </div>
 
         <div class="input-group">
@@ -103,7 +38,7 @@
         </div>
 
         <div class="input-group">
-            <label class=label for="month">Month:</label><br>
+            <label class="label" for="month">Month:</label><br>
             <select class="input-box" id="month" name="month">
                 <option class= selected disabled>Select Month</option>
                 <option value="1">January</option>
@@ -138,6 +73,7 @@
                 <option class= selected disabled>Select Price Type</option>
                 <option value="Retail">Retail Price</option>
                 <option value="Wholesale">Wholesale Price</option>
+                <option value="Farm Gate">Farm Gate Price</option>
             </select>
             <!-- <input type="text" id="pricetype" name="pricetype" value="Retail"><br> -->
         </div>
@@ -169,5 +105,35 @@
         </div>
             <input class="button" type="submit" value="Predict Price!">
     </form>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var categories = {{ categories | tojson | safe }};
+        function updateCommodity() {
+            var categorySelect = document.getElementById("category");
+            var commoditySelect = document.getElementById("commodity");
+            var selectedCategory = categorySelect.options[categorySelect.selectedIndex].value;
+            var commodities = categories[selectedCategory];
+            commoditySelect.innerHTML = "";
+            for (var i = 0; i < commodities.length; i++) {
+                var option = document.createElement("option");
+                option.text = commodities[i];
+                commoditySelect.add(option);
+            }
+        }
+        window.onload = updateCommodity;
+
+        $("#predict-form").submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: '/predict',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(data) {
+                    $("#prediction-result").html("Prediction: " + data);
+                }
+            });
+        });
+        </script>
 </body>
 </html>
