@@ -64,7 +64,8 @@ def predict():
     # Create a reverse mapping
     reverse_mapping = {v: k for k, v in data.items()}
     region = reverse_mapping[int(region)] 
+    result = f'P{prediction[0]}' if (0 < prediction[0] < 1500) else None
 
     # Return prediction
     #return str(prediction[0])
-    return render_template('predict.html', prediction=prediction[0], commodity=commodity, region=region, year=year, month=calendar.month_name[int(month)])
+    return render_template('predict.html', prediction=result, commodity=commodity, region=region, year=year, month=calendar.month_name[int(month)])
